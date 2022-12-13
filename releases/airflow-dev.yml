@@ -8,7 +8,8 @@ metadata:
 spec:
   releaseName: airflow-dev
   chart:
-    repository: https://airflow.apache.org
+    #repository: https://airflow.apache.org
+    repository: https://github.com/apache/airflow/tree/master/chart
     name: airflow
     version: 1.0.0
   values:
