@@ -2,15 +2,15 @@ apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: airflow
-  namespace: dev
+  namespace: staging
   annotations:
     # information used by external libbraries
     flux.weave.works/automated: "true"
 spec:
   releaseName: airflow-dev
   chart:
-    repository: https://marclamberti.github.io/airflow-eks-helm-chart
-    #repository: https://airflow.apache.org
+    #repository: https://marclamberti.github.io/airflow-eks-helm-chart
+    repository: https://airflow.apache.org
     #repository: https://github.com/kimerajoseph/airflow-eks-helm-chart-marclambert.git
     name: airflow
     version: 1.0.0
