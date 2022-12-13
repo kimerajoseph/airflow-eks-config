@@ -1,30 +1,15 @@
-apiVersion: helm.fluxcd.io/v1
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: airflow
   namespace: dev
-  annotations:
-    flux.weave.works/automated: "true"
 spec:
-  releaseName: airflow-dev
+  interval: 5m
   chart:
-    #repository: https://airflow.apache.org
-    repository: https://github.com/apache/airflow/tree/master/chart
-    name: airflow
-    version: 1.0.0
-  values:
-    fernetKey: "zTxhk7FuGqQVPZVoukLn5bGWOrgHzhQnBnaqAItcZGI="
-    env:
-      - name: "AIRFLOW__KUBERNETES__DAGS_IN_IMAGE"
-        value: "True"
-      - name: "AIRFLOW__KUBERNETES__NAMESPACE"
-        value: "dev"
-      - name: "AIRFLOW__KUBERNETES__WORKER_CONTAINER_REPOSITORY"
-        value: "apache/airflow"
-      - name: "AIRFLOW__KUBERNETES__WORKER_CONTAINER_TAG"
-        value: "2.0.2-python3.7"
-      - name: "AIRFLOW__KUBERNETES__RUN_AS_USER"
-        value: "50000"
-      - name: "AIRFLOW__CORE__LOAD_EXAMPLES"
-        value: "True"
-    executor: "KubernetesExecutor"
+    spec:
+      chart: airflow
+      sourceRef:
+        kind: HelmRepository
+        name: airflow
+        namespace: flux
+      interval: 1m
